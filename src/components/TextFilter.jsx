@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import StarContext from '../context/StarContext';
+import './TextFilter.css';
 
 function TextFilter() {
   const { setTextFilter } = useContext(StarContext);
   return (
     <div>
-      <label htmlFor="filter-text">
+      <label className="search" htmlFor="filter-text">
         <input
           type="text"
           name="filter-text"

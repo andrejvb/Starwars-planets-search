@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import StarContext from '../context/StarContext';
 
 function Table() {
-  const { planets, planetsFilt } = useContext(StarContext);
-  const thePlanets = planetsFilt.length > 0 ? planetsFilt : planets;
+  const { planetsFilt, textFilter } = useContext(StarContext);
   return (
     <table>
       <thead>
@@ -23,13 +22,16 @@ function Table() {
           <th>URL</th>
         </tr>
       </thead>
-      { thePlanets && thePlanets.map((e) => (
-        <tbody key={ e.name }>
-          <tr>
-            { Object.values(e).map((info) => (<td key={ info }>{info}</td>))}
-          </tr>
-        </tbody>
-      ))}
+      { planetsFilt && planetsFilt
+        .filter((planet) => planet.name.toLowerCase()
+          .includes(textFilter.toLowerCase()))
+        .map((e) => (
+          <tbody key={ e.name }>
+            <tr>
+              { Object.values(e).map((info) => (<td key={ info }>{info}</td>))}
+            </tr>
+          </tbody>
+        ))}
     </table>
   );
 }

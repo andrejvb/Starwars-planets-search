@@ -35,7 +35,7 @@ function StarProvider({ children }) {
   // }, [textFilter, planets]);
 
   useEffect(() => {
-    const planetsNameFilt = planets?.filter((planetas) => {
+    const planetsFiltNCondition = planets?.filter((planetas) => {
       const planetasFiltrados = selectedFilters.map(({ column, comparison, value }) => {
         switch (comparison) {
         case 'maior que':
@@ -50,7 +50,7 @@ function StarProvider({ children }) {
       });
       return planetasFiltrados.every((e) => e);
     });
-    setPlanetFilt(planetsNameFilt);
+    setPlanetFilt(planetsFiltNCondition);
   }, [selectedFilters, planets]);
 
   // const tratarDados = () => {

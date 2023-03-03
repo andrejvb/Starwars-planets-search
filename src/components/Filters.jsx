@@ -49,6 +49,26 @@ function Filters() {
         Filtrar
       </button>
 
+      {selectedFilters.map((filter, index) => (
+        <div className="selectedFilters" key={ index }>
+          <button
+            onClick={ () => {
+              const cloneArray = [...selectedFilters];
+              cloneArray.splice(index, 1);
+              setSelectedFilters(cloneArray);
+              console.log(cloneArray);
+            } }
+          >
+            𝙭
+          </button>
+          <span>
+            { filter.column }
+            { filter.condition }
+            { filter.value }
+          </span>
+        </div>
+      ))}
+
     </div>
   );
 }

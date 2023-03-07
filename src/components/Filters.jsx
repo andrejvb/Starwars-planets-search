@@ -6,7 +6,10 @@ function Filters() {
     filters,
     setFilters,
     selectedFilters,
-    setSelectedFilters } = useContext(StarContext);
+    setSelectedFilters,
+    setoptionsColumn,
+    optionsColumnArray } = useContext(StarContext);
+
   return (
     <div>
       <select
@@ -44,13 +47,29 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => setSelectedFilters([...selectedFilters, filters]) }
+        onClick={ () => {
+          setSelectedFilters([...selectedFilters, filters]);
+          setoptionsColumn(optionsColumn.filter((a) => a !== filters.column));
+          setFilters({
+            ...filters,
+            column: optionsColumn
+              .filter((a) => a !== filters.column)[0] });
+        } }
       >
         Filtrar
       </button>
+      <button
+        data-testid="button-remove-filters"
+        onClick={ () => {
+          setSelectedFilters([]);
+          setoptionsColumn(optionsColumnArray);
+        } }
+      >
+        Remove All
+      </button>
 
       {selectedFilters.map((filter, index) => (
-        <div className="selectedFilters" key={ index }>
+        <div data-testid="filter" key={ index }>
           <button
             onClick={ () => {
               const cloneArray = [...selectedFilters];

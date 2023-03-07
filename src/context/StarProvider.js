@@ -23,6 +23,11 @@ function StarProvider({ children }) {
     setPlanetFilt(planetsList);
   };
 
+  // useEffect(() => {
+  //   const optionsSelected = optionsColumn.filter((a) => a !== filters.column);
+  //   setoptionsColumn(optionsSelected);
+  // }, [filters]);
+
   useEffect(() => {
     getPlanets();
   }, []);
@@ -86,7 +91,8 @@ function StarProvider({ children }) {
     filters,
     setFilters,
     selectedFilters,
-    setSelectedFilters };
+    setSelectedFilters,
+    optionsColumnArray };
 
   return (
     <StarContext.Provider value={ Contextvalue }>{children}</StarContext.Provider>
